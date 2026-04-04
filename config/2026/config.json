@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v1.1",
+  "page_title": "Rebuilt v1.2",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -81,7 +81,8 @@
           "required": true,
           "code": "matchNumber",
           "formResetBehavior": "increment",
-          "defaultValue": 0
+          "defaultValue": 0,
+          "min": 0
         },
         {
           "title": "Team Number",
