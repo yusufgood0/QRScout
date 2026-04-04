@@ -20,30 +20,31 @@ export interface ImageDrawData {
   imageUrl?: string;
   disabled?: boolean;
 }
+const lineWidth = 10;
 // // Good but lets keep it simple
-// function DrawPolyLineWithGradiant(points: VertexPoint[], ctx: CanvasRenderingContext2D, color1: { r: number, g: number, b: number }, color2: { r: number, g: number, b: number }) {
-//   if (points.length > 1) {
-//     ctx.lineWidth = 5;
+function DrawPolyLineWithGradiant(points: VertexPoint[], ctx: CanvasRenderingContext2D, color1: { r: number, g: number, b: number }, color2: { r: number, g: number, b: number }) {
+  if (points.length > 1) {
+    ctx.lineWidth = lineWidth;
 
-//     for (let i = 1; i < points.length; i++) {
-//       const t = i / (points.length - 1); // 0=start, 1=end
-//       const r = Math.round(color1.r + (color2.r - color1.r) * t);
-//       const g = Math.round(color1.g + (color2.g - color1.g) * t);
-//       const b = Math.round(color1.b + (color2.b - color1.b) * t);
+    for (let i = 1; i < points.length; i++) {
+      const t = i / (points.length - 1); // 0=start, 1=end
+      const r = Math.round(color1.r + (color2.r - color1.r) * t);
+      const g = Math.round(color1.g + (color2.g - color1.g) * t);
+      const b = Math.round(color1.b + (color2.b - color1.b) * t);
 
-//       ctx.strokeStyle = `rgb(${r},${g},${b})`;
+      ctx.strokeStyle = `rgb(${r},${g},${b})`;
 
-//       ctx.beginPath();
-//       ctx.moveTo(points[i - 1].x, points[i - 1].y);
-//       ctx.lineTo(points[i].x, points[i].y);
-//       ctx.stroke();
-//     }
-//   }
-// }
+      ctx.beginPath();
+      ctx.moveTo(points[i - 1].x, points[i - 1].y);
+      ctx.lineTo(points[i].x, points[i].y);
+      ctx.stroke();
+    }
+  }
+}
 function DrawPolyLineStaticColor(points: VertexPoint[], ctx: CanvasRenderingContext2D, color: { r: number, g: number, b: number }) {
   if (points.length > 0) {
     ctx.strokeStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
-    ctx.lineWidth = 5;
+    ctx.lineWidth = lineWidth * 0.75;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i++) {
@@ -141,12 +142,14 @@ export default function ImageDrawInput(props: ConfigurableInputProps) {
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     // Draw background
     if (backgroundImage.current) {
       ctx.drawImage(backgroundImage.current, 0, 0, canvas.width, canvas.height);
     }
     // Draw points
     DrawPolyLineStaticColor(points, ctx, {r: 10, g:255, b:10})
+    DrawPolyLineWithGradiant(points, ctx, {r: 10, g:255, b:10}, {r: 10, g:255, b:255})
   }, [points]);
 
   // Load background image
@@ -229,9 +232,9 @@ export default function ImageDrawInput(props: ConfigurableInputProps) {
     <div>
       <canvas
         ref={canvasRef}
-        width={500}   // actual pixel width
+        width={800}   // actual pixel width
         style={{
-          border: '1px solid green',
+          border: '0px solid black',
           width: '100%',
           height: 'auto',
           display: 'block',
@@ -255,10 +258,13 @@ export default function ImageDrawInput(props: ConfigurableInputProps) {
           width: "100%",
           textAlign: 'center',
           cursor: 'pointer',
-          backgroundColor: 'gray'
+          backgroundColor: 'gray',
+          color: 'black',
+          fontSize: '20px',
+          font: 'Garamond'
         }}
       >
-        Clear
+        [ CLEAR ]
       </button>
     </div>
   );
