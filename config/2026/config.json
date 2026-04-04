@@ -81,7 +81,7 @@
           "required": true,
           "code": "matchNumber",
           "formResetBehavior": "increment",
-          "defaultValue": 1
+          "defaultValue": 0
         },
         {
           "title": "Team Number",
@@ -124,15 +124,6 @@
           "defaultValue": []
         },
         {
-          "title": "Fuel Missed",
-          "description": "Approximate fuel MISSED during autonomous.",
-          "type": "multi-counter",
-          "required": false,
-          "code": "autoFuelmissed",
-          "formResetBehavior": "reset",
-          "defaultValue": 0
-        },
-        {
           "title": "Moved?",
           "description": "Check if the robot moved during autonomous.",
           "type": "boolean",
@@ -172,6 +163,7 @@
         },
         {
           "title": "Auto Foul",
+          "description": "How often did they get a foul, ie: firing fuel outside of field",
           "type": "counter",
           "required": false,
           "code": "auf",
@@ -186,33 +178,11 @@
       "name": "Teleop",
       "fields": [
         {
-          "title": "Robot Fuel Missed",
-          "description": "The amount of fuel missed in teleop (by the robot)",
-          "type": "counter",
-          "required": false,
-          "code": "FIT",
-          "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "step": 1
-        },
-        {
           "title": "Robot Lob Shots",
           "description": "The number of times a robot shoots a lob shot",
           "type": "counter",
           "required": false,
           "code": "LF",
-          "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "step": 1
-        },
-        {
-          "title": "Human Fuel Scored",
-          "description": "The amount of fuel scored directly by the human player",
-          "type": "counter",
-          "required": false,
-          "code": "HFS",
           "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
@@ -227,10 +197,11 @@
           "defaultValue": false
         },
         {
-          "title": "Feeded Human Player?",
+          "title": "Fed Human Player?",
+          "description": "Did they push fuel into the outpost?",
           "type": "boolean",
           "required": false,
-          "code": "feededHumanPlayer",
+          "code": "fedHumanPlayer",
           "formResetBehavior": "reset",
           "defaultValue": false
         }
@@ -297,6 +268,7 @@
         },
         {
           "title": "Over/Under?",
+          "description": "Did they go over the bump or under the trench?",
           "type": "select",
           "required": true,
           "code": "over/under",
@@ -306,7 +278,8 @@
             "O": "Over the Bump",
             "U": "Under the Trench",
             "B": "Both",
-            "N": "Neither"
+            "N": "Neither",
+            " ": "Unsure"
           }
         },
         {
