@@ -12,6 +12,7 @@ import TimerInput from './TimerInput';
 import MultiSelectInput from './MultiSelectInput';
 import TBATeamAndRobotInput from './TBATeamAndRobotInput';
 import TBAMatchNumberInput from './TBAMatchNumberInput';
+import ImageDrawInput from './ImageDrawInput';
 export interface ConfigurableInputProps {
   section: string;
   code: string;
@@ -46,5 +47,7 @@ export default function ConfigurableInput(props: ConfigurableInputProps) {
       return <TBATeamAndRobotInput {...props} key={props.code} />;
     case 'TBA-match-number':
       return <TBAMatchNumberInput {...props} key={props.code} />;
+    case 'image-draw':
+      return <ImageDrawInput {...props} key={props.code} />;
   }
 }

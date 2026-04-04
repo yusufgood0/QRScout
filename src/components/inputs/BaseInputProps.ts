@@ -15,6 +15,7 @@ export const inputTypeSchema = z
     'action-tracker',
     'TBA-team-and-robot',
     'TBA-match-number',
+    'image-draw'
   ])
   .describe('The type of input');
 
@@ -107,6 +108,22 @@ export const imageInputSchema = inputBaseSchema.extend({
   alt: z.string().optional().describe('The alt text for the image'),
 });
 
+export const ImageDrawInputSchema = inputBaseSchema.extend({
+  type: z.literal('image-draw'),
+  imageUrl: z.string().optional().describe('Optional background image URL'),
+  width: z.number().optional().describe('The width of the image in pixels'),
+  height: z.number().optional().describe('The height of the image in pixels'),
+  defaultValue: z
+    .array(
+      z.array(
+        z.number(),
+        z.number(),
+      ),
+    )
+    .default([])
+    .describe('The default array of points for the routine'),
+});
+
 export const actionSchema = z.object({
   label: z.string().describe('The display label for this action button'),
   code: z
@@ -186,6 +203,7 @@ export const sectionSchema = z.object({
       actionTrackerInputSchema,
       tbaTeamAndRobotInputSchema,
       tbaMatchNumberInputSchema,
+      ImageDrawInputSchema, 
     ]),
   ),
 });
@@ -348,6 +366,7 @@ export type TBATeamAndRobotInputData = z.infer<
   typeof tbaTeamAndRobotInputSchema
 >;
 export type TBAMatchNumberInputData = z.infer<typeof tbaMatchNumberInputSchema>;
+export type ImageDrawInputData = z.infer<typeof ImageDrawInputSchema>;
 
 export type InputPropsMap = {
   text: StringInputData;
@@ -363,6 +382,7 @@ export type InputPropsMap = {
   'action-tracker': ActionTrackerInputData;
   'TBA-team-and-robot': TBATeamAndRobotInputData;
   'TBA-match-number': TBAMatchNumberInputData;
+  'image-draw': ImageDrawInputData;
 };
 
 export type SectionProps = z.infer<typeof sectionSchema>;
