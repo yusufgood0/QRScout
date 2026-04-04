@@ -236,6 +236,7 @@ export default function ImageDrawInput(props: ConfigurableInputProps) {
           height: 'auto',
           display: 'block',
           cursor: 'crosshair',
+          touchAction: 'none'
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
