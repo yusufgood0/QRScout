@@ -274,7 +274,7 @@
           "required": true,
           "code": "over/under",
           "formResetBehavior": "reset",
-          "defaultValue": "No",
+          "defaultValue": "",
           "choices": {
             "O": "Over the Bump",
             "U": "Under the Trench",
