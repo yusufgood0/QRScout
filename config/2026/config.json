@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v2.1",
+  "page_title": "Rebuilt v2.2",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -104,9 +104,9 @@
           "formResetBehavior": "reset",
           "defaultValue": "",
           "choices": {
-            "R1": "Outpost Side",
-            "R2": "Middle",
-            "R3": "Depot Side"
+            "R": "Outpost Side",
+            "M": "Middle",
+            "L": "Depot Side"
           }
         }
       ]
@@ -179,15 +179,30 @@
       "name": "Teleop",
       "fields": [
         {
-          "title": "Robot Lob Shots",
-          "description": "The number of times a robot shoots a lob shot",
-          "type": "counter",
-          "required": false,
-          "code": "LF",
+          "title": "Lobbed Fuel?",
+          "type": "select",
+          "required": true,
+          "code": "fuelLobbed",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "step": 1
+          "defaultValue": "",
+          "choices": {
+            "N": "None",
+            "F": "Few",
+            "M": "Many"
+          }
+        },
+        {
+          "title": "Shoveled Fuel?",
+          "type": "select",
+          "required": true,
+          "code": "fuelPushed",
+          "formResetBehavior": "reset",
+          "defaultValue": "",
+          "choices": {
+            "N": "None",
+            "F": "Few",
+            "M": "Many"
+          }
         },
         {
           "title": "Played Defense?",
