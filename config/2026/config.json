@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v2.2.1",
+  "page_title": "Rebuilt v2.3",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -205,12 +205,16 @@
           }
         },
         {
-          "title": "Played Defense?",
-          "type": "boolean",
+          "title": "Defense Score",
+          "description": "How good was their defense? Consider how effectively they blocked? How much they slowed down the opponent? Did they get fouls? Leave as zero if they didn't play defense.",
+          "type": "range",
           "required": false,
           "code": "CFPDT",
           "formResetBehavior": "reset",
-          "defaultValue": false
+          "defaultValue": 0,
+          "min": 0,
+          "max": 10,
+          "step": 1
         },
         {
           "title": "Fed Human Player?",
