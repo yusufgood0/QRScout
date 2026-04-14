@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v2.3.2",
+  "page_title": "Rebuilt v2.4",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -77,7 +77,7 @@
         {
           "title": "Match Number",
           "description": "Enter the match number.",
-          "type": "number",
+          "type": "TBA-match-number",
           "required": true,
           "code": "matchNumber",
           "formResetBehavior": "increment",
@@ -87,13 +87,11 @@
         {
           "title": "Team Number",
           "description": "The team number of the robot you're scouting.",
-          "type": "number",
+          "type": "TBA-team-and-robot",
           "required": true,
           "code": "teamNumber",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "max": 19999
+          "defaultValue": null
         },
         {
           "title": "Starting Position",
@@ -180,33 +178,41 @@
       "fields": [
         {
           "title": "Lobbed Fuel?",
-          "type": "select",
+          "type": "range",
           "required": true,
           "code": "fuelLobbed",
           "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "N": "None",
-            "F": "Few",
-            "M": "Many"
-          }
+          "defaultValue": 0,
+          "min": 0,
+          "max": 5,
+          "step": 1
         },
         {
           "title": "Shoveled Fuel?",
-          "type": "select",
+          "type": "range",
           "required": true,
           "code": "fuelPushed",
           "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "N": "None",
-            "F": "Few",
-            "M": "Many"
-          }
+          "defaultValue": 0,
+          "min": 0,
+          "max": 5,
+          "step": 1
         },
         {
-          "title": "Defense Score",
+          "title": "Defense skill",
           "description": "How good was their defense? Consider how effectively they blocked? How much they slowed down the opponent? Did they get fouls? Leave as zero if they didn't play defense.",
+          "type": "range",
+          "required": false,
+          "code": "CFPDT",
+          "formResetBehavior": "reset",
+          "defaultValue": 0,
+          "min": 0,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "title": "Anti-Defense skill",
+          "description": "How good were they against defense? Consider how consistantly they got past defense? How much were they slowed down by the opponent? Leave as zero if they werent defended.",
           "type": "range",
           "required": false,
           "code": "CFPDT",
