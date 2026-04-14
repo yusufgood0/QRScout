@@ -51,7 +51,15 @@ function DrawPolyLineStaticColor(points: VertexPoint[], ctx: CanvasRenderingCont
       ctx.lineTo(points[i].x, points[i].y);
     }
     ctx.stroke();
+
+    const last = points[points.length - 1];
+
+    ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
+    ctx.beginPath();
+    ctx.arc(last.x, last.y, 5, 0, Math.PI * 2); // radius = 5
+    ctx.fill();
   }
+  
 }
 export function encodePolyline(points: VertexPoint[]): string {
   let lastX = 0;
