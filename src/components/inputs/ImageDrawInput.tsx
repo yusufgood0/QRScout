@@ -149,7 +149,7 @@ export default function ImageDrawInput(props: ConfigurableInputProps) {
     }
     // Draw points
     DrawPolyLineStaticColor(points, ctx, {r: 10, g:255, b:10})
-    DrawPolyLineWithGradiant(points, ctx, {r: 10, g:255, b:10}, {r: 10, g:255, b:255})
+    // DrawPolyLineWithGradiant(points, ctx, {r: 10, g:255, b:10}, {r: 10, g:255, b:255})
   }, [points]);
 
   // Load background image
