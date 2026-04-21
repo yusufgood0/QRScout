@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v2.4",
+  "page_title": "Rebuilt v2.5",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -81,7 +81,7 @@
           "required": true,
           "code": "matchNumber",
           "formResetBehavior": "increment",
-          "defaultValue": 0,
+          "defaultValue": 1,
           "min": 0
         },
         {
@@ -140,36 +140,19 @@
           "defaultValue": "",
           "choices": {
             "1": "Level 1",
-            "2": "Level 2",
-            "3": "Level 3",
             "No": "Didn't Climb",
             "F": "Failed Climb",
             " ": "Unsure"
           }
         },
         {
-          "title": "Auto Climb Side",
-          "type": "select",
-          "required": false,
-          "code": "Auto Climb Side",
+          "title": "Broken Auto",
+          "description": "Stuck, stopped or Off-track",
+          "type": "boolean",
+          "required": true,
+          "code": "Astop",
           "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "L": "Depot Side (Left)",
-            "R": "Outpost Side (Right)",
-            " ": "Unsure"
-          }
-        },
-        {
-          "title": "Auto Foul",
-          "description": "How often did they get a foul, ie: firing fuel outside of field",
-          "type": "counter",
-          "required": false,
-          "code": "auf",
-          "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "step": 1
+          "defaultValue": false
         }
       ]
     },
@@ -177,49 +160,58 @@
       "name": "Teleop",
       "fields": [
         {
-          "title": "Lobbed Fuel?",
+          "title": "Lobbed Fuel? ★☆☆☆☆",
           "type": "range",
           "required": true,
           "code": "fuelLobbed",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
+          "defaultValue": 1,
+          "min": 1,
           "max": 5,
           "step": 1
         },
         {
-          "title": "Shoveled Fuel?",
+          "title": "Shoveled Fuel? ★☆☆☆☆",
           "type": "range",
           "required": true,
           "code": "fuelPushed",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
+          "defaultValue": 1,
+          "min": 1,
           "max": 5,
           "step": 1
         },
         {
-          "title": "Defense skill",
-          "description": "How good was their defense? Consider how effectively they blocked? How much they slowed down the opponent? Did they get fouls? Leave as zero if they didn't play defense.",
+          "title": "Played Defense?",
+          "description": "Consider how effectively they blocked? How long they stalled the opponent?",
+          "type": "boolean",
+          "required": true,
+          "code": "Defense?",
+          "formResetBehavior": "reset",
+          "defaultValue": false
+        },
+        {
+          "title": "Defense Efficiency ★★★☆☆",
+          "description": "Consider how effectively they blocked? How long they stalled the opponent?",
           "type": "range",
-          "required": false,
+          "required": true,
           "code": "CFPDT",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "max": 10,
+          "defaultValue": 3,
+          "min": 1,
+          "max": 5,
           "step": 1
         },
         {
-          "title": "Anti-Defense skill",
-          "description": "How good were they against defense? Consider how consistantly they got past defense? How much were they slowed down by the opponent? Leave as zero if they werent defended.",
+          "title": "Aggression ★☆☆☆☆",
+          "description": "How harsh did they play defense, hit game pieces, and other bots. Essentially how likely are they to break themselves or something else",
           "type": "range",
-          "required": false,
-          "code": "CFPDT",
+          "required": true,
+          "code": "aggression",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "max": 10,
+          "defaultValue": 1,
+          "min": 1,
+          "max": 5,
           "step": 1
         },
         {
@@ -247,21 +239,8 @@
             "1": "Level 1",
             "2": "Level 2",
             "3": "Level 3",
-            "No": "Didn't Climb",
-            "F": "Failed Climb",
-            " ": "Unsure"
-          }
-        },
-        {
-          "title": "Endgame Climb Side",
-          "type": "select",
-          "required": false,
-          "code": "Endgame Climb Side",
-          "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "L": "Depot Side (Left)",
-            "R": "Outpost Side (Right)",
+            "No Climb": "Didn't Climb",
+            "Failed Climb": "Failed Climb",
             " ": "Unsure"
           }
         },
@@ -281,31 +260,40 @@
         {
           "title": "Intake",
           "description": "How did the robot intake?",
-          "type": "select",
+          "type": "multi-select",
           "required": true,
           "code": "robotIntake",
           "formResetBehavior": "reset",
-          "defaultValue": " ",
+          "defaultValue": [],
           "choices": {
-            "G": "Ground",
-            "O": "Outpost",
-            " ": "Unsure"
+            "Ground": "Ground",
+            "Outpost": "Outpost"
           }
         },
         {
           "title": "Over/Under?",
           "description": "Did they go over the bump or under the trench?",
+          "type": "multi-select",
+          "required": true,
+          "code": "OVERUNDER",
+          "formResetBehavior": "reset",
+          "defaultValue": [],
+          "choices": {
+            "Over": "Over the Bump",
+            "Under": "Under the Trench"
+          }
+        },
+        {
+          "title": "Yellow/Red Card",
           "type": "select",
           "required": true,
-          "code": "over/under",
+          "code": "yc",
           "formResetBehavior": "reset",
           "defaultValue": "",
           "choices": {
-            "O": "Over the Bump",
-            "U": "Under the Trench",
-            "B": "Both",
-            "N": "Neither",
-            " ": "Unsure"
+            "No Card": "No Card",
+            "Yellow": "Yellow Card",
+            "Red": "Red Card"
           }
         },
         {
