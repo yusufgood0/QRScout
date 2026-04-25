@@ -21,6 +21,9 @@
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
+
+
+
 <button onclick="openConfirm()" style="padding:8px 16px; border:none; border-radius:6px; background:#463be7; color:white; cursor:pointer;">
   Reset App
 </button>
@@ -40,13 +43,13 @@
     background:white;
     color:black;
     padding:20px;
-    width:300px;
+    width:200px;
     border-radius:12px;
     text-align:center;
     box-shadow:0 10px 25px rgba(0,0,0,0.3);
   ">
     <h3 style="margin-top:0;">Reset App</h3>
-    <p style="font-size:14px;">Type <b>confirm</b> to continue</p>
+    <p style="font-size:14px;">Type <b>confirm</b> to reset <b>ALL</b> application data. Ensure stable internet connection. Config will be lost.</p>
 
     <input id="confirmInput" type="text" placeholder="confirm"
       style="width:100%; padding:8px; margin-top:10px; border:1px solid #ccc; border-radius:6px;" />
@@ -56,7 +59,7 @@
         style="padding:8px 12px; border:none; border-radius:6px; background:#463be7; color:white; cursor:pointer;">
         OK
       </button>
-
+    
       <button onclick="closeConfirm()" 
         style="padding:8px 12px; border:none; border-radius:6px; background:#ccc; margin-left:10px; cursor:pointer;">
         Cancel
