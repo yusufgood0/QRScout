@@ -1,34 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2"
-    />
-    <meta name="description" content="Description" />
-    <meta name="keywords" content="Keywords" />
-    <title>QR Scout</title>
 
-    <link rel="manifest" href="/QRScout/manifest.json" />
-    <link
-      href="/QRScout/icons/favicon-16x16.png"
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-    />
-    <link
-      href="/QRScout/icons/favicon-32x32.png"
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-    />
-    <link rel="apple-touch-icon" href="/QRScout/apple-icon.png" />
-    <meta name="theme-color" content="#317EFB" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2" />
+  <meta name="description" content="Description" />
+  <meta name="keywords" content="Keywords" />
+  <title>QR Scout</title>
+
+  <link rel="manifest" href="/QRScout/manifest.json" />
+  <link href="/QRScout/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
+  <link href="/QRScout/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/QRScout/apple-icon.png" />
+  <meta name="theme-color" content="#317EFB" />
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+
+
+<button onclick="openConfirm()">Reset App</button>
+
+<div id="confirmBox"
+  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+  <div style="background:white; padding:20px; max-width:300px; margin:15% auto; text-align:center;">
+    <p>Type <b>confirm</b> to reset:</p>
+    <input id="confirmInput" type="text" />
+    <br><br>
+    <button onclick="doReset()">OK</button>
+    <button onclick="closeConfirm()">Cancel</button>
+  </div>
+</div>
+
+<script>
+  function openConfirm() {
+    document.getElementById("confirmBox").style.display = "block";
+  }
+
+  function closeConfirm() {
+    document.getElementById("confirmBox").style.display = "none";
+  }
+
+  function doReset() {
+    const input = document.getElementById("confirmInput").value;
+
+    if (input !== "confirm") {
+      alert("You must type 'confirm'");
+      return;
+    }
+
+    // Clear storage
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Clear cookies
+    document.cookie.split(";").forEach(function (cookie) {
+      document.cookie = cookie
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
+    });
+
+    // Clear caches (PWA)
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => caches.delete(name));
+      });
+    }
+
+    location.reload();
+  }
+</script>
+
 </html>
