@@ -1,6 +1,6 @@
 {
   "title": "QRScout",
-  "page_title": "Rebuilt v2.5",
+  "page_title": "Rebuilt v2.6",
   "delimiter": "\t",
   "teamNumber": 4907,
   "floatingField": {
@@ -92,20 +92,6 @@
           "code": "teamNumber",
           "formResetBehavior": "reset",
           "defaultValue": null
-        },
-        {
-          "title": "Starting Position",
-          "description": "The starting position of the robot.",
-          "type": "select",
-          "required": true,
-          "code": "Prsp",
-          "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "R": "Outpost Side",
-            "M": "Middle",
-            "L": "Depot Side"
-          }
         }
       ]
     },
@@ -160,28 +146,6 @@
       "name": "Teleop",
       "fields": [
         {
-          "title": "Lobbed Fuel? ★☆☆☆☆",
-          "type": "range",
-          "required": true,
-          "code": "fuelLobbed",
-          "formResetBehavior": "reset",
-          "defaultValue": 1,
-          "min": 1,
-          "max": 5,
-          "step": 1
-        },
-        {
-          "title": "Shoveled Fuel? ★☆☆☆☆",
-          "type": "range",
-          "required": true,
-          "code": "fuelPushed",
-          "formResetBehavior": "reset",
-          "defaultValue": 1,
-          "min": 1,
-          "max": 5,
-          "step": 1
-        },
-        {
           "title": "Played Defense?",
           "description": "Consider how effectively they blocked? How long they stalled the opponent?",
           "type": "boolean",
@@ -192,7 +156,7 @@
         },
         {
           "title": "Defense Efficiency ★★★☆☆",
-          "description": "Consider how effectively they blocked? How long they stalled the opponent?",
+          "description": "Consider how effectively they blocked? How long they stalled the opponent? INGNORE FOULS",
           "type": "range",
           "required": true,
           "code": "CFPDT",
@@ -213,15 +177,6 @@
           "min": 1,
           "max": 5,
           "step": 1
-        },
-        {
-          "title": "Fed Human Player?",
-          "description": "Did they push fuel into the outpost?",
-          "type": "boolean",
-          "required": false,
-          "code": "fedHumanPlayer",
-          "formResetBehavior": "reset",
-          "defaultValue": false
         }
       ]
     },
@@ -258,30 +213,13 @@
       "name": "Postmatch",
       "fields": [
         {
-          "title": "Intake",
-          "description": "How did the robot intake?",
-          "type": "multi-select",
-          "required": true,
-          "code": "robotIntake",
-          "formResetBehavior": "reset",
-          "defaultValue": [],
-          "choices": {
-            "Ground": "Ground",
-            "Outpost": "Outpost"
-          }
-        },
-        {
-          "title": "Over/Under?",
-          "description": "Did they go over the bump or under the trench?",
-          "type": "multi-select",
+          "title": "Trench?",
+          "description": "CAN they go under the trench",
+          "type": "boolean",
           "required": true,
           "code": "OVERUNDER",
           "formResetBehavior": "reset",
-          "defaultValue": [],
-          "choices": {
-            "Over": "Over the Bump",
-            "Under": "Under the Trench"
-          }
+          "defaultValue": false
         },
         {
           "title": "Yellow/Red Card",
