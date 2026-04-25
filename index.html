@@ -25,9 +25,11 @@
 
 <button onclick="openConfirm()">Reset App</button>
 
-<div id="confirmBox"
-  style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
-  <div style="background:white; padding:20px; max-width:300px; margin:15% auto; text-align:center;">
+<input id="confirmInput" type="text" style="padding:5px; border:1px solid #ccc;" />
+
+<button onclick="doReset()" style="margin-top:10px;">OK</button>
+<button onclick="closeConfirm()">Cancel</button>
+<div style="background:white; color:rgb(37, 53, 197); padding:20px; max-width:300px; margin:15% auto; text-align:center; border-radius:10px;"></div>
     <p>Type <b>confirm</b> to reset:</p>
     <input id="confirmInput" type="text" />
     <br><br>
